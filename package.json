@@ -1,0 +1,17 @@
+{
+  "name": "caricias",
+  "version": "1.0.0",
+  "description": "caricias",
+  "main": "index.js",
+  "scripts": {
+    "start": "node keystone.js"
+  },
+  "author": "Aarati Akkapeddi",
+  "license": "ISC",
+  "dependencies": {
+    "keystone": "^4.2.1",
+    "keystone-storage-adapter-s3": "^2.0.0",
+    "pug": "^2.0.4",
+    "stellar.js": "^0.6.5"
+  }
+}

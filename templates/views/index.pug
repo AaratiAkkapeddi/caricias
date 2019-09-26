@@ -1,0 +1,126 @@
+doctype html
+html(lang="en")
+  head
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Montserrat&display=swap')
+    link(rel='stylesheet', href='/styles/flickity.css')
+    link(rel='stylesheet', href='/styles/styles.css')
+    meta( name='viewport', content='width=device-width, initial-scale=1' )
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='/scripts/flickity.pkgd.min.js')
+    script(src='/scripts/bigtext.js')
+    script(src='/scripts/jquery.stellar.js')
+    script(src='/scripts/main.js')
+    title= "Caricias"
+  body(class=['home'])
+    <marquee behavior=scroll direction=down scrollamount=1 scrolldelay=47 height=593 style='position:absolute; left:9%; top:26px; width:100; height:593px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=1 scrolldelay=10 height=608 style='position:absolute; left:69%; top:66px; width:100; height:608px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=3 scrolldelay=5 height=586 style='position:absolute; left:47%; top:110px; width:100; height:586px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=5 scrolldelay=46 height=576 style='position:absolute; left:37%; top:157px; width:100; height:576px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=1 scrolldelay=48 height=680 style='position:absolute; left:82%; top:163px; width:100; height:680px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=3 scrolldelay=12 height=641 style='position:absolute; left:63%; top:98px; width:100; height:641px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=2 scrolldelay=25 height=545 style='position:absolute; left:33%; top:186px; width:100; height:545px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=4 scrolldelay=15 height=544 style='position:absolute; left:76%; top:4px; width:100; height:544px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=5 scrolldelay=32 height=626 style='position:absolute; left:29%; top:25px; width:100; height:626px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=2 scrolldelay=22 height=662 style='position:absolute; left:81%; top:33px; width:100; height:662px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=6 scrolldelay=34 height=677 style='position:absolute; left:15%; top:109px; width:100; height:677px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=5 scrolldelay=20 height=647 style='position:absolute; left:83%; top:9px; width:100; height:647px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=5 scrolldelay=42 height=532 style='position:absolute; left:85%; top:122px; width:100; height:532px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=6 scrolldelay=33 height=552 style='position:absolute; left:28%; top:48px; width:100; height:552px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=1 scrolldelay=7 height=655 style='position:absolute; left:5%; top:198px; width:100; height:655px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=6 scrolldelay=10 height=567 style='position:absolute; left:80%; top:10px; width:100; height:567px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=3 scrolldelay=23 height=612 style='position:absolute; left:31%; top:65px; width:100; height:612px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=6 scrolldelay=17 height=525 style='position:absolute; left:39%; top:171px; width:100; height:525px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=4 scrolldelay=44 height=682 style='position:absolute; left:81%; top:156px; width:100; height:682px;'><font>*</font></marquee>
+    <marquee behavior=scroll direction=down scrollamount=3 scrolldelay=15 height=657 style='position:absolute; left:63%; top:83px; width:100; height:657px;'><font>*</font></marquee>
+    div(id='circle')
+    div(class='hall', data-stellar-ratio="0.5")
+      if audiences.length
+        each audience, i in audiences
+          -var audience_images = []
+          -for (var x = audience.photos.length - 1; x >= 0; x--) {var photo = photos.find(function(element) {return element.id == audience.photos[x];});audience_images.unshift(photo)}
+          div(class=['audience'])
+            if audience.design == "single-image"
+              img(src=audience_images[0].photo.url)
+            if audience.design == "overlap-left"
+              div(class='audience-overlap-left')
+                img(src=audience_images[0].photo.url)
+                img(src=audience_images[1].photo.url)
+            if audience.design == "overlap-right"
+              div(class='audience-overlap-right')
+                img(src=audience_images[0].photo.url)
+                img(src=audience_images[1].photo.url)
+    div(class='main') 
+      div(class='title', id='bigtext') 
+        span Caricias
+      if sections.length
+        each section, i in sections
+          -var images = []
+          -var halfsize = section.width
+          -var overflow = ''
+          -if(section.design == 'full-bleed-image'){overflow = 'overflow'}
+          -for (var x = section.photos.length - 1; x >= 0; x--) {var photo = photos.find(function(element) {return element.id == section.photos[x];});images.unshift(photo)}
+          div(class=['section', halfsize, overflow])
+            if section.design == "image-inside-image"
+              div(class='photo-in-photo')
+                img(class='outer-photo', src=images[0].photo.url)
+                img(class='inner-photo', src=images[1].photo.url)       
+            else if section.design == "slideshow"
+              div(class='slideshow')
+                each photo, j in images
+                  img(class='slide', src=photo.photo.url)
+            else if section.design == "gallery"
+              div(class='lightbox')
+              div(class='gallery')
+                each photo, j in images
+                  img(class='gallery-slide', src=photo.photo.url)
+            else if section.design == "full-bleed-image"
+              div(class='full-bleed-image')
+                img(src=images[0].photo.url)
+            else if section.design == "text"
+              div(class='text')!= section.text
+            else if section.design == 'overlap-left'
+              div(class='overlap-left')
+                img(src=images[0].photo.url)
+                img(src=images[1].photo.url)
+            else if section.design == 'overlap-right'
+              div(class='overlap-right')
+                img(src=images[0].photo.url)
+                img(src=images[1].photo.url)
+            else if section.design == 'audio-portrait-left'
+              div(class='audio-portrait-left')
+                div(class='audio-portrait')
+                  img(src=images[0].photo.url)
+                  div(class='audio')
+                    audio(controls=true)
+                      source(src=section.audio.url, type='audio/mpeg')
+                div(class='audio-transcripts')
+                  div(class='spanish')!=section.transcript_spanish
+                  br
+                  div(class='english')!=section.transcript_english
+            else if section.design == 'audio-portrait-right'
+              div(class='audio-portrait-right')!= section.text
+                div(class='audio-transcripts')
+                  div(class='spanish') meow
+                  div(class='english') meow
+                div(class='audio-portrait')
+                  img(src=images[0].photo.url)
+                  div(class='audio') 
+                    audio(controls=true)
+                      source(src=section.audio.url, type='audio/mpeg')
+            else if section.design == 'video'
+              div(class='video')
+                div(class='muted')
+                  <svg id='on' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94.73 77.57"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}</style></defs><title>Asset 1</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" y="21.14" width="18.25" height="36.5"/><polygon class="cls-1" points="52.75 77.57 17.25 57.64 17.25 21.14 53.75 0 52.75 77.57"/><line class="cls-2" x1="63.3" y1="20.45" x2="93.49" y2="10.8"/><line class="cls-2" x1="63.48" y1="39.23" x2="94.7" y2="38.34"/><line class="cls-2" x1="63.3" y1="56.69" x2="93.49" y2="66.34"/></g></g></svg>
+                  <svg id='off' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.22 77.57"><defs><style>.cls-1{fill:#fff;stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}.cls-2{fill:#fff;}</style></defs><title>Asset 2</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><line class="cls-1" x1="60.73" y1="53.87" x2="85.45" y2="23.7"/><line class="cls-1" x1="85.45" y1="53.87" x2="60.73" y2="23.7"/><rect class="cls-2" y="21.14" width="18.25" height="36.5"/><polygon class="cls-2" points="52.75 77.57 17.25 57.64 17.25 21.14 53.75 0 52.75 77.57"/></g></g></svg>
+                video(autoplay=false,controls=false, muted=true)
+                  source(src=section.video.url, type='video/mp4')
+                  source(src=section.video.url, type='video/ogg')
+    br
+    br
+    h1(id='info-h1') About
+    br
+    div(id='info')
+      <b>Caricias is a multimedia ode to migrant LGBTQ+ tribute artists who perform as Latinx divas like Jennni Rivera, Juan Gabriel, Celia Cruz, Chalino Sanchez, Selena and many more.</b> These nostalgic performances are a growing cultural phenomenon in Los Angeles where tribute artists are invited to backyard parties, first communion and baptism celebrations, quinceñeras, nightclubs and straight bars to be the centerpieces of entertainment. <br><br>Caricias explores the journey beyond the spectacle into the intimate spaces these tribute artists create with audiences and their community - where there is catharsis, where there is memory and where there is self-preservation. <br><br>
+      The photography and interviews invite us to observe the subtle shifts in behavior by predominantly heteronormative audiences when the space is queered by the performers. These LGBTQ artists offer more than the couple hundred dollars they take back home. Beyond the physical labor of making their own costumes and performing multiple acts in shows, they also endure the emotional labor of the crowd they are in by challenging them to embrace closeness, holding their discomfort and subverting it as palpable comedy. <br><br><br>Caricias is a collaborative project</b> with the performers involved and my own practice as an artist and documentarian. Our project aims to show the nuances “behind the curtain” of party performances and how artists create radically queer and supportive spaces during times of heavy persecution for migrants and LGBTQ people.  As Mexico, El Salvador and Honduras continue to be among the most violent place for LGBTQ, femme, and gender non-conforming people, we ask diasporic communities to reflect on the selective acceptance of queer and transgender bodies within and outside the context of nostalgic tribute performances.<br><br><hr><br>Caricias es una celebración de múltiples medios artísticos de artistas de tributo que imitan a divas latinoa/os como Jenni Rivera, Juan Gabriel, Paquita la del Barrio, Chalino Sanchez, Selena y muchos más. Los show de imitadores son un fenómeno cultural en Los Ángeles, donde los artistas son invitados a fiestas de familia en casas, primeras comuniones, quinceañeras, clubes nocturnos y bares heterosexuales y se convierten en el centro de entretenimiento. Caricias se fija más allá del espectáculo a los espacios íntimos que estos artistas de tributos crean con el público y su comunidad, donde hay catarsis, donde hay memoria y donde preservación íntima. La fotografía y las entrevistas nos invitan a observar los cambios sutiles del comportamiento de las audiencias predominantemente heterosexuales cuando los artistas entran en el espacio. Estos artistas LGBTQ pues ofrecen más de los pocos dólares que se llevan a casa. Más allá del trabajo físico de hacer sus propios trajes y imitar múltiples artistas en espectáculos, también soportan el trabajo emocional de la multitud en la que se acercan al público de una forma de desafío, abrazando su incomodidad y subvirtiendo como una comedia palpable.<br><br>Caricias es un proyecto colaborativo con los artistas y mi propia práctica como artista y documentalista. Por lo tanto, nuestro proyecto tiene como objetivo mostrar los matices "detrás del telón" de las representaciones de fiestas y mostrar cómo los artistas crean espacios radicalmente gay y de apoyo en estos tiempos de gran persecución para los migrantes y las personas LGBTQ. México, El Salvador y Honduras continúan siendo uno de los lugares más violentos para las personas LGBTQ, femme y de género no conforme, pedimos a las comunidades diaspóricas que reflexionen sobre la aceptación selectiva de los cuerpos queer y transgénero dentro y fuera del contexto del homenaje nostálgico actuaciones.<br><br><hr><br>Story by Arlene Mejorado.<br>Assistant producer francisco aviles pino<br>This project is made possible in part by Magnum Foundation.<br><br>Historia por Arlene Mejorado.<br>Asistencia por francisco aviles pino<br>Este proyecto fue posible en parte por Magnum Foundation.
+    include includes/footer.pug
+
